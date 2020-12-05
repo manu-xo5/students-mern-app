@@ -15,8 +15,8 @@ router.get('/', async (_, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const newStudent = await new Student(req.body);
-    newStudent.save();
+    const newStudent = new Student(req.body);
+    await newStudent.save();
     res.json({ student: newStudent });
   } catch ({ message }) {
     console.error(message);

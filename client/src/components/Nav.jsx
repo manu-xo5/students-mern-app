@@ -1,20 +1,26 @@
-import { Link } from 'react-router-dom';
-import { useUser } from '../context/user';
+import { Link } from "react-router-dom";
+import { useUser } from "../context/user";
+import { Back } from "./Button";
 
-const Navbar = () => {
+const Navbar = ({ isMenuOpen, toggleMenu, className = "" }) => {
   const { user } = useUser();
-  console.log(user);
   return (
-    <nav>
-      <ul>
+    <nav
+      className={`${className} ${isMenuOpen ? "open" : ""}`}
+      onScroll={(ev) => ev.preventDefault()}
+    >
+      <ul >
         <li>
-          <Link to='/'>Home</Link>
+          <Back onClick={() => toggleMenu(false)} />
+        </li>
+        <li>
+          <Link to="/">Home</Link>
         </li>
         <li>
           {user?.isLogged ? (
-            <Link to='/me'>{user.name}</Link>
+            <Link to="/profile">{user.name}</Link>
           ) : (
-            <Link to='/login'>Login / Sign Up</Link>
+            <Link to="/login">Login / Sign Up</Link>
           )}
         </li>
       </ul>

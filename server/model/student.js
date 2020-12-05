@@ -17,13 +17,13 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  collage: {
+  college: {
     type: String,
   },
   address: { type: String },
   identity: {
     type: String,
-    enum: ['AMERICAN', 'ASIAN'],
+    enum: ["AMERICAN", "ASIAN"],
     required: true,
   },
   note: {

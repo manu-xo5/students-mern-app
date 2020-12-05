@@ -1,14 +1,13 @@
 import Express from 'express';
 import mongoose from 'mongoose';
-import 'dotenv/config.js';
-import Student from './model/student.js';
+import "dotenv/config.js";
 import StudentsRoutes from './api/students.js';
 import AuthRoutes from './api/auth.js';
 import MeRoutes from './api/me.js';
 
 const app = Express();
 const PORT = process.env.PORT || 5000;
-const MONGORUI = process.env.MONGOURI;
+const MONGORUI = process.env.MONGO_URI;
 
 app.use(Express.json());
 app.use('/auth', AuthRoutes);

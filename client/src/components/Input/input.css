@@ -1,6 +1,19 @@
+.field-label {
+  display: inline-block;
+  margin-bottom: .2rem;
+}
 .field-input {
   margin-bottom: 1rem;
+  padding: .5rem;
   width: 100%;
+  border: 1px solid #aaaaaa;
+  border-radius: 5px;
+  outline:none;
+}
+
+.field-input:active,
+.field-input:focus {
+  border-color: #000000;
 }
 
 .submit-btn {

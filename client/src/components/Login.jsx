@@ -1,40 +1,32 @@
-import { Link } from 'react-router-dom';
-import Input from './Input';
-import query from '../helpers/query';
-import { useToken } from '../context/token';
+import Input from "./Input";
+import { useUser } from "../context/user";
+import * as Button from "./Button";
 
-const Login = () => {
-  const { setToken } = useToken();
-  const handleLogin = async ev => {
+const Login = ({ history }) => {
+  const { login } = useUser();
+
+  const handleLogin = async (ev) => {
     ev.preventDefault();
     const { name, password } = ev.target.elements;
-    const { token, error } = await query('/auth', {
-      method: 'post',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: name.value,
-        password: password.value,
-      }),
+    login({
+      name: name.value,
+      password: password.value,
     });
-    if (error) return alert(error);
-    setToken(token);
   };
 
   return (
     <>
-      <h1>Login</h1>
+      <h1><Button.Back onClick={() => history.push("/")} /><span>Login</span></h1>
       <form onSubmit={handleLogin}>
-        <Input label='Name' name='name' required />
-        <Input label='Password' type='password' name='password' required />
-        <button className='submit-btn' type='submit'>
-          Login in
-        </button>
+        <Input label="Name" name="name" required />
+        <Input label="Password" name="password" type="password" required />
+        <Button.Primary type="submit">
+          Login
+        </Button.Primary>
+        <Button.Secondary onClick={() => history.push("/signup")}>
+          Or Register
+        </Button.Secondary>
       </form>
-      <p>
-        <Link to='/signup'>or register</Link>
-      </p>
     </>
   );
 };
