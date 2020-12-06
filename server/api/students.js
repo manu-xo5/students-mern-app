@@ -1,26 +1,26 @@
-import Express from 'express';
-import mongoose from 'mongoose';
-import Student from '../model/student.js';
-import jwt from 'jsonwebtoken';
-import auther from '../middlewares/auther.js';
+const Express = require("express");
+const mongoose = require("mongoose");
+const Student = require("../model/student.js");
+const jwt = require("jsonwebtoken");
+const auther = require("../middlewares/auther.js");
 
 const router = Express.Router();
 
-router.get('/', async (_, res) => {
+router.get("/", async (_, res) => {
   try {
-    const students = await Student.find().select('-password');
+    const students = await Student.find().select("-password");
     res.json({ students });
   } catch ({ message }) {
     res.status(500).json({ error: message });
   }
 });
 
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const newStudent = new Student(req.body);
     await newStudent.save();
     const token = jwt.sign(
-      { _id: newStudent._id, role: 'student' },
+      { _id: newStudent._id, role: "student" },
       process.env.JWT_SECRET
     );
     res.json({ student: newStudent, token });
@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.delete('/', auther, async (req, res) => {
+router.delete("/", auther, async (req, res) => {
   try {
     await Student.findByIdAndDelete(req.user._id);
     res.sendStatus(200);
@@ -39,4 +39,4 @@ router.delete('/', auther, async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;

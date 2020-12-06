@@ -1,11 +1,11 @@
-import Express from 'express';
-import mongoose from 'mongoose';
-import Student from '../model/student.js';
-import auther from '../middlewares/auther.js';
+const Express = require("express");
+const mongoose = require("mongoose");
+const Student = require("../model/student.js");
+const auther = require("../middlewares/auther.js");
 
 const router = Express.Router();
 
-router.get('/', auther, async (req, res) => {
+router.get("/", auther, async (req, res) => {
   try {
     const student = await Student.findById(req.user._id);
     res.json({ student });
@@ -15,7 +15,7 @@ router.get('/', auther, async (req, res) => {
   }
 });
 
-router.put('/', auther, async (req, res) => {
+router.put("/", auther, async (req, res) => {
   try {
     const student = await Student.findByIdAndUpdate(req.user._id, req.body, {
       new: true,
@@ -27,4 +27,4 @@ router.put('/', auther, async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;

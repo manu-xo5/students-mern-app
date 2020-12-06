@@ -25,9 +25,3 @@
   background-color: #fff;
   color: #000;
 }
-
-.submit-btn {
-  padding: calc(var(--main-pad) / 2) !important;
-  width: 100%;
-  display: block;
-}

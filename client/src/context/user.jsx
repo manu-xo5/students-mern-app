@@ -1,28 +1,35 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import Api from '../helpers/api';
-import { useToken } from './token';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
+import Api from "../helpers/api";
+import { useToken } from "./token";
 
 const init = { isLogged: false };
 const UserContext = createContext(null);
 
-const UserProvider = props => {
+const UserProvider = (props) => {
   const { token, setToken } = useToken();
   const [user, setUser] = useState(init);
+  const [count, incCounter] = useReducer((p) => ++p, 0);
 
   useEffect(() => {
     const _main = async () => {
+      if (!token) return setUser(init);
+
       const { student, error } = await Api.me(token);
       if (error) setUser(init);
-      else setUser({ ...student, isLogged: true });
+      if (student) setUser({ ...student, isLogged: true });
     };
     _main();
-  }, [token]);
+  }, [token, count]);
 
   const login = async ({ name, password }) => {
-    const { token, error } = await Api.login({ name, password });
-    console.log('token', token);
-    if (error) return alert(error);
-    setToken(token);
+    const { token } = await Api.login({ name, password });
+    if (token) setToken(token);
   };
 
   const signup = async ({
@@ -35,7 +42,7 @@ const UserProvider = props => {
     identity,
     note,
   }) => {
-    const { token, error } = await Api.signup({
+    const { token } = await Api.signup({
       name,
       password,
       phone,
@@ -45,13 +52,16 @@ const UserProvider = props => {
       identity,
       note,
     });
-    if (error) return alert(error);
-    setToken(token);
+    if (token) setToken(token);
   };
 
-  const updateNote = note => Api.updateProfile({ token, note });
+  const updateNote = async (note) => {
+    const res = await Api.updateProfile({ token, note });
+    incCounter();
+    return res;
+  };
 
-  const logout = () => setToken('');
+  const logout = () => setToken("");
 
   const deleteAccount = () => {
     const isSure = window.confirm(
@@ -59,7 +69,7 @@ const UserProvider = props => {
     );
     if (!isSure) return;
     const { error } = Api.deleteProfile(token);
-    if (!error) setToken('');
+    if (!error) setToken("");
   };
 
   return (

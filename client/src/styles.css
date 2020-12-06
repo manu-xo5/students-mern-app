@@ -5,7 +5,7 @@
 }
 
 :root {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   --primary-blue: #0aabba;
   --main-pad: 1rem;
   --grey: #dddddd;
@@ -103,6 +103,11 @@ button.secondary {
   border-radius: 5px;
 }
 
+button.primary:disabled,
+button.secondary:disabled {
+  opacity: 0.5;
+}
+
 button.primary {
   border-color: var(--primary-blue);
   color: #082a3c;
@@ -127,7 +132,7 @@ button.secondary {
 }
 
 .card-title__sec::before {
-  content: 'From: ';
+  content: "From: ";
 }
 
 .card-title__sec {
@@ -137,6 +142,12 @@ button.secondary {
 
 .card span {
   margin-right: 1rem;
+}
+
+.submit-btn {
+  padding: calc(var(--main-pad) / 2) !important;
+  width: 100%;
+  display: block;
 }
 
 .profile-name {
@@ -175,6 +186,11 @@ button.secondary {
   main {
     padding: var(--main-pad) calc(var(--main-pad) * 4);
   }
+
+  h1 {
+    font-size: 2rem;
+  }
+
   nav.desktop {
     display: block;
   }
@@ -220,6 +236,8 @@ button.secondary {
     padding: var(--main-pad);
   }
   .submit-btn {
+    padding: 0.25rem 0.5rem !important;
+    width: auto;
     display: inline-block;
   }
 }

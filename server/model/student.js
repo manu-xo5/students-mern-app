@@ -1,10 +1,10 @@
-import mongoose from 'mongoose';
+const mongoose = require("mongoose");
 
 const studentSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    max: [24, 'Name too fuuKing long'],
+    max: [24, "Name too fuuKing long"],
   },
   password: {
     type: String,
@@ -15,12 +15,12 @@ const studentSchema = new mongoose.Schema({
     type: Number,
     required: true,
     unique: true,
-    min: [1000000000, 'Fool'],
-    max: [9999999999, 'Typo in phone number'],
+    min: [1000000000, "Fool"],
+    max: [9999999999, "Typo in phone number"],
   },
   dob: {
     type: String,
-    required: [true, 'Fk privacy. DOB IS REQUIRED'],
+    required: [true, "Fk privacy. DOB IS REQUIRED"],
   },
   college: {
     type: String,
@@ -28,12 +28,12 @@ const studentSchema = new mongoose.Schema({
   address: { type: String },
   identity: {
     type: String,
-    enum: ['AMERICAN', 'ASIAN'],
-    required: [true, 'ASIAN or not simple'],
+    enum: ["AMERICAN", "ASIAN"],
+    required: [true, "ASIAN or not simple"],
   },
   note: {
     type: String,
   },
 });
 
-export default mongoose.model('student', studentSchema);
+module.exports = mongoose.model("student", studentSchema);
