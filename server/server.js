@@ -1,6 +1,6 @@
 import Express from 'express';
 import mongoose from 'mongoose';
-import "dotenv/config.js";
+import 'dotenv/config.js';
 import StudentsRoutes from './api/students.js';
 import AuthRoutes from './api/auth.js';
 import MeRoutes from './api/me.js';
@@ -19,6 +19,7 @@ async function main() {
     await mongoose.connect(MONGORUI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useFindAndModify: false,
     });
     console.log('mongoose connected');
 

@@ -5,15 +5,19 @@
 }
 
 :root {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --primary-blue: #0aabba;
+  --main-pad: 1rem;
+  --grey: #dddddd;
+  --dark-grey: #454545;
 }
 
 body {
   background-color: whitesmoke;
+  margin-bottom: var(--main-pad);
 }
 
-nav.mobile {
+nav {
   position: fixed;
   top: 0;
   left: -100%;
@@ -24,26 +28,32 @@ nav.mobile {
   transition: left 200ms ease-in;
 }
 
-nav.mobile.open {
+nav.open {
   left: 0;
 }
+nav.desktop {
+  display: none;
+}
 
-nav.mobile ul {
-  padding: 0.5rem;
+nav ul {
+  padding: var(--main-pad);
   list-style: none;
 }
 
-nav.mobile ul li a {
-  display: inline-block;
-  padding: 0.25rem 0.5rem;
-  border: 2px solid transparent;
+nav ul li {
+  margin-bottom: calc(var(--main-pad) / 2);
+  font-weight: bold;
+  color: #444444;
 }
-nav.mobile ul li a:active {
-  border: 2px solid currentColor;
+
+nav ul li a {
+  margin-left: var(--main-pad);
+  padding: calc(var(--main-pad) / 2);
+  display: block;
 }
 
 main {
-  padding: 0.5rem;
+  padding: var(--main-pad);
 }
 
 h1,
@@ -57,9 +67,12 @@ h6 {
 }
 
 h1 {
+  margin-bottom: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1rem;
+  letter-spacing: 1px;
 }
 
 h1 span {
@@ -70,6 +83,16 @@ h1 span {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+hr {
+  border: 2px solid var(--primary-blue);
+  border-radius: 2px;
+}
+
+textarea {
+  height: 100px;
+  resize: none;
 }
 
 button.primary,
@@ -95,8 +118,7 @@ button.secondary {
 .card {
   margin-bottom: 0.75rem;
   padding: 0.5rem;
-  background-color: #efefef;
-  border: 1px solid #333333;
+  background-color: #eeeeee;
   border-radius: 10px;
 }
 
@@ -105,7 +127,7 @@ button.secondary {
 }
 
 .card-title__sec::before {
-  content: "From: ";
+  content: 'From: ';
 }
 
 .card-title__sec {
@@ -115,6 +137,11 @@ button.secondary {
 
 .card span {
   margin-right: 1rem;
+}
+
+.profile-name {
+  margin: 1rem 0;
+  font-size: 1.5rem;
 }
 
 .chip {
@@ -133,4 +160,66 @@ button.secondary {
   vertical-align: middle;
   background: none;
   border: none;
+}
+
+.empty {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+@media only screen and (min-width: 600px) {
+  body {
+    margin-top: calc(var(--main-pad) * 5);
+  }
+  main {
+    padding: var(--main-pad) calc(var(--main-pad) * 4);
+  }
+  nav.desktop {
+    display: block;
+  }
+  nav.mobile {
+    display: none;
+  }
+  nav {
+    width: 100vw;
+    height: auto;
+    left: 0;
+  }
+  nav ul {
+    display: flex;
+    align-items: center;
+    gap: var(--main-pad);
+  }
+  nav ul li {
+    margin: 0;
+  }
+  nav ul li a {
+    margin: 0;
+    border: 2px solid transparent;
+    padding: calc(var(--main-pad) / 2) var(--main-pad);
+  }
+  nav ul li a:active {
+    border-color: var(--dark-grey);
+  }
+  nav .hr {
+    display: none;
+  }
+
+  button.back {
+    display: none;
+  }
+  button.menu {
+    display: none;
+  }
+  .empty {
+    display: none;
+  }
+
+  .card {
+    padding: var(--main-pad);
+  }
+  .submit-btn {
+    display: inline-block;
+  }
 }

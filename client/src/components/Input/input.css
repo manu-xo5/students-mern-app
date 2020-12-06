@@ -1,22 +1,33 @@
 .field-label {
   display: inline-block;
-  margin-bottom: .2rem;
-}
-.field-input {
-  margin-bottom: 1rem;
-  padding: .5rem;
-  width: 100%;
-  border: 1px solid #aaaaaa;
-  border-radius: 5px;
-  outline:none;
+  margin-bottom: 0.2rem;
 }
 
-.field-input:active,
+.field-input {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  width: 100%;
+  background-color: var(--grey);
+  border: 2px solid var(--grey);
+  border-radius: 5px;
+  outline: none;
+  color: var(--dark-grey);
+  caret-color: var(--primary-blue);
+}
+
+.field-input:disabled {
+  --color: #888888;
+  color: var(--color);
+}
+
 .field-input:focus {
-  border-color: #000000;
+  border-color: var(--primary-blue);
+  background-color: #fff;
+  color: #000;
 }
 
 .submit-btn {
-  display: block;
+  padding: calc(var(--main-pad) / 2) !important;
   width: 100%;
+  display: block;
 }

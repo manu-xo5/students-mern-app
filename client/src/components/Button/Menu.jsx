@@ -1,17 +1,13 @@
-import menu from "../../assets/menu.svg";
-const imageStyles = {
-  display: "block",
-  width: 24,
-  hieght: 24,
-};
-const Menu = ({ className = "", ...props }) => {
+import menu from '../../assets/menu.svg';
+
+const Menu = ({ className = '', ...props }) => {
   return (
     <button
-      className={`click transparent ${className}`}
-      type="button"
+      className={`click transparent menu ${className}`}
+      type='button'
       {...props}
     >
-      <img style={imageStyles} src={menu} alt="menu button" />
+      <img className='empty' src={menu} alt='menu button' />
     </button>
   );
 };

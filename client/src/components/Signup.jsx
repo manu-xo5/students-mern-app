@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { useUser } from "../context/user";
-import Input from "./Input";
-import * as Button from "./Button";
+import { useState } from 'react';
+import { useUser } from '../context/user';
+import Input from './Input';
+import * as Button from './Button';
 
 const Signup = ({ history }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { signup } = useUser();
 
-  const handleRegister = async (ev) => {
+  const handleRegister = async ev => {
     ev.preventDefault();
     const {
       name,
@@ -36,30 +36,29 @@ const Signup = ({ history }) => {
   return (
     <>
       <h1>
-        <Button.Back onClick={() => history.push("/")} />
+        <Button.Back />
         <span>Sign Up</span>
+        <div className='empty'></div>
       </h1>
       <form onSubmit={handleRegister}>
-        <Input label="Name" name="name" />
-        <Input label="Password" name="password" type="password" />
-        <Input label="Phone" name="phone" type="tel" inputMode="tel" />
-        <Input label="DOB (optional)" name="dob" type="date" />
-        <Input label="College" name="college" />
-        <Input label="Address" name="address" />
-        <Input as="select" label="Identity" name="identity">
-          <option value="AMERICAN">America</option>
-          <option value="ASIAN">Asian</option>
+        <Input label='Name' name='name' />
+        <Input label='Password' name='password' type='password' />
+        <Input label='Phone' name='phone' type='tel' inputMode='tel' />
+        <Input label='DOB (optional)' name='dob' type='date' />
+        <Input label='College' name='college' />
+        <Input label='Address' name='address' />
+        <Input as='select' label='Identity' name='identity'>
+          <option value='AMERICAN'>America</option>
+          <option value='ASIAN'>Asian</option>
         </Input>
-        <Input as="textarea" label="Note to yourself (BIO)" name="note" />
-        <Button.Primary type="submit" disabled={isLoading}>
+        <Input as='textarea' label='Note to yourself (BIO)' name='note' />
+        <Button.Primary type='submit' disabled={isLoading}>
           Register
         </Button.Primary>
-      </form>
-      <p>
-        <Button.Secondary onClick={() => history.push("/login")}>
+        <Button.Secondary onClick={() => history.push('/login')}>
           Already have account?
         </Button.Secondary>
-      </p>
+      </form>
     </>
   );
 };

@@ -1,23 +1,23 @@
-import query from "../helpers/query";
+import query from '../helpers/query';
 
 const Api = {
-  me: async (token) => {
-    if (!token) return { error: "Token is required" };
-    return await query("/me", {
-      method: "get",
+  me: async token => {
+    if (!token) return { error: 'Token is required' };
+    return await query('/me', {
+      method: 'get',
       headers: {
-        authentication: token,
+        authorization: token,
       },
     });
   },
   login: async ({ name, password }) => {
     if (!name || !password) {
-      return { error: "Name and Password required" };
+      return { error: 'Name and Password required' };
     }
-    return await query("/auth", {
-      method: "post",
+    return await query('/auth', {
+      method: 'post',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
       body: JSON.stringify({ name, password }),
     });
@@ -32,10 +32,10 @@ const Api = {
     identity,
     note,
   }) =>
-    query("/students", {
-      method: "post",
+    query('/students', {
+      method: 'post',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
       body: JSON.stringify({
         name,
@@ -50,20 +50,27 @@ const Api = {
     }),
   updateProfile: async ({ token, note }) => {
     if (note === undefined || note == null) {
-      return { error: "Note is required" };
+      return { error: 'Note is required' };
     }
-    return await query("/me", {
-      method: "put",
+    return await query('/me', {
+      method: 'put',
       headers: {
-        "content-type": "application/json",
-        authentication: token,
+        'content-type': 'application/json',
+        authorization: token,
       },
       body: JSON.stringify({
         note,
       }),
     });
   },
-  getStudents: () => query("/students"),
+  deleteProfile: token =>
+    query(`/students`, {
+      method: 'delete',
+      headers: {
+        authorization: token,
+      },
+    }),
+  getStudents: () => query('/students'),
 };
 
 export default Api;

@@ -1,28 +1,44 @@
-import { Link } from "react-router-dom";
-import { useUser } from "../context/user";
-import { Back } from "./Button";
+import { Link } from 'react-router-dom';
+import { useUser } from '../context/user';
+import { Back } from './Button';
 
-const Navbar = ({ isMenuOpen, toggleMenu, className = "" }) => {
-  const { user } = useUser();
+const Navbar = ({ isMenuOpen, toggleMenu, className = '' }) => {
+  const { user, logout } = useUser();
   return (
     <nav
-      className={`${className} ${isMenuOpen ? "open" : ""}`}
-      onScroll={(ev) => ev.preventDefault()}
+      className={`${className} ${isMenuOpen ? 'open' : ''}`}
+      onScroll={ev => ev.preventDefault()}
     >
-      <ul >
+      <ul>
         <li>
           <Back onClick={() => toggleMenu(false)} />
         </li>
         <li>
-          <Link to="/">Home</Link>
+          <Link to='/'>Home</Link>
+        </li>
+        <li>
+          <a href='https://github.com/manu-xo5/students-mern-app'>Github</a>
+        </li>
+        <li className='hr'>
+          <hr />
         </li>
         <li>
           {user?.isLogged ? (
-            <Link to="/profile">{user.name}</Link>
+            <Link to='/profile'>Account</Link>
           ) : (
-            <Link to="/login">Login / Sign Up</Link>
+            <Link to='/login'>Login / Sign Up</Link>
           )}
         </li>
+        <li className='hr'>
+          <hr />
+        </li>
+        {user.isLogged && (
+          <li>
+            <Link to='/' onClick={logout}>
+              Logout
+            </Link>
+          </li>
+        )}
       </ul>
     </nav>
   );

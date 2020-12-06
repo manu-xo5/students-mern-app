@@ -1,13 +1,20 @@
-import arrow from "../../assets/arrow.svg";
-const imageStyles = {
-  display: "block",
-  width: 20,
-  hieght: 20,
-};
-const Back = ({ className = "", ...props }) => {
+import arrow from '../../assets/arrow.svg';
+import { useHistory } from 'react-router-dom';
+
+const noop = () => {};
+
+const Back = ({ className = '', onClick = noop, ...props }) => {
+  const history = useHistory();
   return (
-    <button className={`click transparent ${className}`} {...props}>
-      <img style={imageStyles} src={arrow} alt="go back" />
+    <button
+      className={`click transparent back${className}`}
+      onClick={() => {
+        history.push('/');
+        onClick();
+      }}
+      {...props}
+    >
+      <img className='empty' src={arrow} alt='go back' />
     </button>
   );
 };

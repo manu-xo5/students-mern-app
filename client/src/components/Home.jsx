@@ -1,20 +1,25 @@
-import StudentsList from "./StudentsList";
-import { Menu } from "./Button";
-import { useReducer } from "react";
-import Navbar from "./Nav";
+import StudentsList from './StudentsList';
+import { Menu } from './Button';
+import { useReducer } from 'react';
+import Navbar from './Nav';
 
-const Home = () => {
+const Home = props => {
+  const { students } = props;
+  console.log(props);
   const [isMenuOpen, toggleMenu] = useReducer((p, a) => a ?? !p, false);
   return (
     <>
       <Navbar
-        className="mobile"
+        className='mobile'
         isMenuOpen={isMenuOpen}
         toggleMenu={toggleMenu}
       />
-      <Menu onClick={() => toggleMenu(true)} />
-      <h1>List of all students</h1>
-      <StudentsList />
+      <h1>
+        <Menu onClick={() => toggleMenu(true)} />
+        <span>Students</span>
+        <div className='empty'></div>
+      </h1>
+      <StudentsList students={students} />
     </>
   );
 };
