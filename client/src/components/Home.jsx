@@ -3,9 +3,7 @@ import { Menu } from './Button';
 import { useReducer } from 'react';
 import Navbar from './Nav';
 
-const Home = props => {
-  const { students } = props;
-  console.log(props);
+const Home = () => {
   const [isMenuOpen, toggleMenu] = useReducer((p, a) => a ?? !p, false);
   return (
     <>
@@ -19,7 +17,7 @@ const Home = props => {
         <span>Students</span>
         <div className='empty'></div>
       </h1>
-      <StudentsList students={students} />
+      <StudentsList />
     </>
   );
 };

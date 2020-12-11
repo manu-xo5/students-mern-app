@@ -1,26 +1,26 @@
-import query from "../helpers/query";
+import query from '../helpers/query';
 
 const Api = {
-  me: (token) =>
-    query("/me", {
-      method: "get",
+  me: token =>
+    query('/me', {
+      method: 'get',
       headers: {
         authorization: token,
       },
     }),
   login: ({ name, password }) =>
-    query("/auth", {
-      method: "post",
+    query('/auth', {
+      method: 'post',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
       body: JSON.stringify({ name, password }),
     }),
   signup: ({ name, password, phone, dob, college, address, identity, note }) =>
-    query("/students", {
-      method: "post",
+    query('/students', {
+      method: 'post',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
       body: JSON.stringify({
         name,
@@ -34,24 +34,24 @@ const Api = {
       }),
     }),
   updateProfile: ({ token, note }) =>
-    query("/me", {
-      method: "put",
+    query('/me', {
+      method: 'put',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
         authorization: token,
       },
       body: JSON.stringify({
         note,
       }),
     }),
-  deleteProfile: (token) =>
+  deleteProfile: token =>
     query(`/students`, {
-      method: "delete",
+      method: 'delete',
       headers: {
         authorization: token,
       },
     }),
-  getStudents: () => query("/students"),
+  getStudents: () => query('/students'),
 };
 
 export default Api;

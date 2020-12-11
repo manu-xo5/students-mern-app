@@ -1,31 +1,22 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
-import Api from "../helpers/api";
-import { useToken } from "./token";
+import { createContext, useContext, useReducer } from 'react';
+import Api from '../helpers/api';
+import useQuery from '../hooks/useQuery';
+import { useToken } from './token';
 
 const init = { isLogged: false };
 const UserContext = createContext(null);
 
-const UserProvider = (props) => {
+const UserProvider = props => {
   const { token, setToken } = useToken();
-  const [user, setUser] = useState(init);
-  const [count, incCounter] = useReducer((p) => ++p, 0);
+  const [c, refreshUser] = useReducer(c => ++c, 0);
 
-  useEffect(() => {
-    const _main = async () => {
-      if (!token) return setUser(init);
+  const fetchMe = async () => {
+    if (!token) return init;
+    const { student } = await Api.me(token);
+    return student;
+  };
 
-      const { student, error } = await Api.me(token);
-      if (error) setUser(init);
-      if (student) setUser({ ...student, isLogged: true });
-    };
-    _main();
-  }, [token, count]);
+  const { data: user } = useQuery(['user', token, c], fetchMe, init);
 
   const login = async ({ name, password }) => {
     const { token } = await Api.login({ name, password });
@@ -55,13 +46,13 @@ const UserProvider = (props) => {
     if (token) setToken(token);
   };
 
-  const updateNote = async (note) => {
+  const updateNote = async note => {
     const res = await Api.updateProfile({ token, note });
-    incCounter();
+    refreshUser();
     return res;
   };
 
-  const logout = () => setToken("");
+  const logout = () => setToken('');
 
   const deleteAccount = () => {
     const isSure = window.confirm(
@@ -69,7 +60,7 @@ const UserProvider = (props) => {
     );
     if (!isSure) return;
     const { error } = Api.deleteProfile(token);
-    if (!error) setToken("");
+    if (!error) setToken('');
   };
 
   return (

@@ -1,7 +1,17 @@
+import * as React from 'react';
 import formateDate from '../helpers/formateDate';
 import { useHistory } from 'react-router-dom';
+import useQuery from '../hooks/useQuery';
+import Api from '../helpers/api';
+import { pull } from '../helpers/utils';
 
-const Students = ({ students }) => {
+const Students = () => {
+  const [c, s] = React.useReducer(c => ++c, 0);
+  const { data: students } = useQuery(
+    ['students'],
+    () => Api.getStudents().then(pull('students')),
+    []
+  );
   const history = useHistory();
 
   return (
