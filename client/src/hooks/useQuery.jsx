@@ -1,6 +1,6 @@
-import * as React from 'react';
-import query from '../helpers/query';
-import { useIsMounted } from '../hooks/useIsMounted';
+import * as React from "react";
+import query from "../helpers/query";
+import { useIsMounted } from "../hooks/useIsMounted";
 
 const cache = new Map();
 const MAX_AGE = 0.5 * 60 * 1000; // 5 minuntes
@@ -11,7 +11,7 @@ const MAX_AGE = 0.5 * 60 * 1000; // 5 minuntes
  * @param {any} initData
  * @returns {{data: typeof initData, status: "loading" | "success" | "error"}}
  */
-export default function useQuery(queryKey, queryFn, initData) {
+export const useQuery = (queryKey, queryFn, initData) => {
   const hash = JSON.stringify(queryKey);
   const [data, setData] = React.useState(
     () => cache.get(hash)?.data ?? initData
@@ -41,4 +41,4 @@ export default function useQuery(queryKey, queryFn, initData) {
   }
 
   return { data };
-}
+};

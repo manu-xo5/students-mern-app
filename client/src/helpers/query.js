@@ -1,11 +1,11 @@
-import AppError from "../class/AppError";
+import { AppError } from "../class/AppError";
 
 /**
  *
  * @param {Response} res
  */
 
-const validate = (res) => {
+export const validate = res => {
   const { headers, status } = res;
   if (!headers.get("content-type").includes("application/json")) {
     throw new AppError("Server Error.");
@@ -26,7 +26,7 @@ const validate = (res) => {
  * @param {RequestInit} [init]
  */
 
-const query = async (input, init) => {
+export const query = async (input, init) => {
   try {
     const res = await window.fetch(input, init);
     validate(res);
@@ -37,5 +37,3 @@ const query = async (input, init) => {
     return { error: error.message };
   }
 };
-
-export default query;

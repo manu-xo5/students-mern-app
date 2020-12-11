@@ -1,7 +1,7 @@
-import { Redirect, Route } from 'react-router-dom';
-import { useUser } from '../context/user';
+import { Redirect, Route } from "react-router-dom";
+import { useUser } from "../context/user";
 
-const Proute = ({ reverse = false, ...props }) => {
+export const Proute = ({ reverse = false, ...props }) => {
   const { user } = useUser();
   return user.isLogged === !reverse ? (
     <Route {...props} />
@@ -9,5 +9,3 @@ const Proute = ({ reverse = false, ...props }) => {
     <Redirect to="/" />
   );
 };
-
-export default Proute;

@@ -1,7 +1,7 @@
-import { createContext, useContext, useReducer } from 'react';
-import Api from '../helpers/api';
-import useQuery from '../hooks/useQuery';
-import { useToken } from './token';
+import { createContext, useContext, useReducer } from "react";
+import { Api } from "../helpers/api";
+import { useQuery } from "../hooks/useQuery";
+import { useToken } from "./token";
 
 const init = { isLogged: false };
 const UserContext = createContext(null);
@@ -16,7 +16,7 @@ const UserProvider = props => {
     return student;
   };
 
-  const { data: user } = useQuery(['user', token, c], fetchMe, init);
+  const { data: user } = useQuery(["user", token, c], fetchMe, init);
 
   const login = async ({ name, password }) => {
     const { token } = await Api.login({ name, password });
@@ -52,7 +52,7 @@ const UserProvider = props => {
     return res;
   };
 
-  const logout = () => setToken('');
+  const logout = () => setToken("");
 
   const deleteAccount = () => {
     const isSure = window.confirm(
@@ -60,7 +60,7 @@ const UserProvider = props => {
     );
     if (!isSure) return;
     const { error } = Api.deleteProfile(token);
-    if (!error) setToken('');
+    if (!error) setToken("");
   };
 
   return (

@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useUser } from "../context/user";
-import Input from "./Input";
+import { Input } from "./Input";
 import * as Button from "./Button";
+import { formateDate } from "../helpers/formateDate";
 
-const Profile = () => {
+export const Profile = () => {
   const { user, updateNote, deleteAccount } = useUser();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleProfileUpdate = async (ev) => {
+  const handleProfileUpdate = async ev => {
     ev.preventDefault();
     const newNote = ev.target.elements.note.value;
     setIsLoading(true);
@@ -25,7 +26,7 @@ const Profile = () => {
       <p className="profile-name">{user.name}</p>
       <form onSubmit={handleProfileUpdate}>
         <Input label="Phone" value={user.phone} disabled />
-        <Input label="DOB" value={user.dob} disabled />
+        <Input label="DOB" value={formateDate(new Date(user.dob))} disabled />
         <Input label="College" value={user.college} disabled />
         <Input label="Address" value={user.address} disabled />
         <Input label="Identity" value={user.identity} disabled />
@@ -38,8 +39,7 @@ const Profile = () => {
         <Button.Primary
           className="submit-btn"
           type="submit"
-          disabled={isLoading}
-        >
+          disabled={isLoading}>
           Update note
         </Button.Primary>
         <Button.Secondary onClick={deleteAccount}>
@@ -49,5 +49,3 @@ const Profile = () => {
     </>
   );
 };
-
-export default Profile;
