@@ -1,5 +1,7 @@
 import { AppError } from "../class/AppError";
 
+export const api_prefix = "/api/";
+
 /**
  *
  * @param {Response} res
@@ -28,7 +30,7 @@ export const validate = res => {
 
 export const query = async (input, init) => {
   try {
-    const res = await window.fetch(input, init);
+    const res = await window.fetch(api_prefix + input, init);
     validate(res);
     return await res.json();
   } catch (error) {
