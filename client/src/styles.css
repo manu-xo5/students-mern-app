@@ -7,7 +7,12 @@
 :root {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   --primary-blue: #0aabba;
-  --main-pad: 1rem;
+  --primary-600: #222222;
+  --primary-200: #d9f6ff;
+  --accent-200: #efefef;
+  --accent-400: #dddddd;
+  --accent-600: #666666;
+  --main-pad: 2rem;
   --grey: #dddddd;
   --dark-grey: #454545;
 }
@@ -36,20 +41,29 @@ nav.desktop {
 }
 
 nav ul {
-  padding: var(--main-pad);
+  padding: calc(var(--main-pad) * 0.75) var(--main-pad);
   list-style: none;
 }
 
 nav ul li {
-  margin-bottom: calc(var(--main-pad) / 2);
+  margin-bottom: 0.5rem;
+  background-color: var(--accent-200);
+  border-radius: 10px;
+  color: var(--primary-600);
   font-weight: bold;
-  color: #444444;
 }
 
 nav ul li a {
-  margin-left: var(--main-pad);
-  padding: calc(var(--main-pad) / 2);
+  margin-left: 1rem;
+  padding: 0.75rem 0.5rem;
   display: block;
+}
+
+.nav-back-btn {
+  background: none;
+}
+.nav-back-btn .back {
+  padding: 0.5rem;
 }
 
 main {
@@ -121,27 +135,54 @@ button.secondary {
 }
 
 .card {
-  margin-bottom: 0.75rem;
-  padding: 0.5rem;
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  display: flex;
   background-color: #eeeeee;
   border-radius: 10px;
 }
 
-.card-title__main {
+.card-display-pic {
+  margin-right: 1rem;
+  display: block;
+  width: 5.125rem;
+  height: 5.125rem;
+  max-width: 5.125rem;
+  max-height: 5.125rem;
+  border: 2px solid var(--accent-600);
+  border-radius: 50%;
+}
+
+.card-title {
   text-transform: capitalize;
 }
 
-.card-title__sec::before {
+.card-title--main {
+  font-size: 1.5rem;
+  color: var(--primary-600);
+}
+
+.card-title--sec {
+  margin-bottom: 0.4rem;
+  font-size: 1rem;
+  color: var(--accent-600);
+}
+
+.card-title--sec::before {
   content: "From: ";
 }
 
-.card-title__sec {
-  margin-bottom: 0.5rem;
-  color: #666666;
-}
-
-.card span {
-  margin-right: 1rem;
+.chip {
+  padding: 0.25rem;
+  min-width: 6rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--accent-600);
+  border-radius: 5px;
+  color: var(--primary-200);
+  font-size: 0.8rem;
+  line-height: 1rem;
 }
 
 .submit-btn {
@@ -153,14 +194,45 @@ button.secondary {
 .profile-name {
   margin: 1rem 0;
   font-size: 1.5rem;
+  text-align: center;
 }
 
-.chip {
-  display: inline-block;
-  padding: 1px 4px 2px;
-  font-size: 0.8rem;
-  border: 1px solid #000000;
+.profile-image-cont {
+  position: relative;
+}
+
+.profile-image {
+  width: 8rem;
+  height: 8rem;
+  max-width: 8rem;
+  max-height: 8rem;
+  margin: 0 auto;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-image-btn {
+  position: absolute;
+  bottom: 0;
+  left: 60%;
+  padding: 0.5rem;
+  background-color: #ffffff;
+  border: 1px solid var(--primary-600);
   border-radius: 5px;
+  color: var(--primary-blue);
+  line-height: 1;
+}
+
+.profile-image-btn__svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  max-width: 1.5rem;
+  max-height: 1.5rem;
+}
+
+.profile-image__input {
+  display: none;
 }
 
 .click:active {

@@ -21,10 +21,18 @@ export const StudentsList = () => {
             key={student._id}
             className="card click"
             onClick={() => history.push("/students", student)}>
-            <p className="card-title__main">{student.name}</p>
-            <p className="card-title__sec">{student.college || " ~ "}</p>
-            <span>{formateDate(new Date(student.dob))}</span>
-            <span className="chip">{student.identity}</span>
+            <img
+              className="card-display-pic"
+              src={Api.getDisplayPic(student._id) || "#"}
+              alt="student's display pic"
+            />
+            <div className="card-cont">
+              <p className="card-title card-title--main">{student.name}</p>
+              <p className="card-title card-title--sec">
+                {student.college || " ~ "}
+              </p>
+              <span className="chip">{student.identity}</span>
+            </div>
           </div>
         ))
       ) : (

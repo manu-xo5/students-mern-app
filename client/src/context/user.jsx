@@ -47,6 +47,7 @@ const UserProvider = props => {
   };
 
   const updateNote = async note => {
+    if (!note) return;
     const res = await Api.updateProfile({ token, note });
     refreshUser();
     return res;
@@ -63,9 +64,22 @@ const UserProvider = props => {
     if (!error) setToken("");
   };
 
+  const updateDisplayPic = img => {
+    if (!img) return;
+    return Api.updateDisplayPic({ img, token });
+  };
+
   return (
     <UserContext.Provider
-      value={{ user, login, signup, updateNote, logout, deleteAccount }}
+      value={{
+        user,
+        login,
+        signup,
+        updateNote,
+        updateDisplayPic,
+        logout,
+        deleteAccount,
+      }}
       {...props}
     />
   );

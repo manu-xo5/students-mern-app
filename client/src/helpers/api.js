@@ -1,4 +1,5 @@
-import { query } from "../helpers/query";
+import { query, api_prefix } from "../helpers/query";
+import { mult } from "../helpers/utils";
 
 export const Api = {
   me: token =>
@@ -8,6 +9,8 @@ export const Api = {
         authorization: token,
       },
     }),
+  getStudents: () => query("/students"),
+  getDisplayPic: studentId => `${api_prefix}img/${studentId}`,
   login: ({ name, password }) =>
     query("/auth", {
       method: "post",
@@ -51,5 +54,12 @@ export const Api = {
         authorization: token,
       },
     }),
-  getStudents: () => query("/students"),
+  updateDisplayPic: ({ img, token }) =>
+    query("/img", {
+      method: "post",
+      headers: {
+        authorization: token,
+      },
+      body: mult(["displayPic", img]),
+    }),
 };

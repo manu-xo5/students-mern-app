@@ -5,7 +5,8 @@ const dateValidator = value => {
   return Date.now() - 536479200000 - value < 0;
 };
 
-const phoneValidator = value => ["6", "9"].includes(String(value)[0]);
+const phoneValidator = value =>
+  ["6", "9"].includes(String(value)[0]) || !Boolean(value);
 
 const studentSchema = new mongoose.Schema({
   name: {
@@ -20,9 +21,11 @@ const studentSchema = new mongoose.Schema({
   },
   phone: {
     type: Number,
-    required: true,
     unique: true,
     validate: [phoneValidator, "This phone number isn't value"],
+  },
+  displayPic: {
+    type: Buffer,
   },
   dob: {
     type: Date,
