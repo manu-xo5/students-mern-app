@@ -9,7 +9,7 @@ export const Navbar = ({ isMenuOpen, toggleMenu, className = "" }) => {
       className={`${className} ${isMenuOpen ? "open" : ""}`}
       onScroll={ev => ev.preventDefault()}>
       <ul>
-        <li>
+        <li className="nav-back-btn">
           <Back onClick={() => toggleMenu(false)} />
         </li>
         <li>
