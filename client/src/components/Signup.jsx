@@ -41,13 +41,13 @@ export const Signup = ({ history }) => {
         <div className="empty"></div>
       </h1>
       <form onSubmit={handleRegister}>
-        <Input label="Name" name="name" />
-        <Input label="Password" name="password" type="password" />
+        <Input label="Name *" name="name" />
+        <Input label="Password *" name="password" type="password" />
         <Input label="Phone" name="phone" type="tel" inputMode="tel" />
-        <Input label="DOB (optional)" name="dob" type="date" />
+        <Input label="Dob" name="dob" type="date" />
         <Input label="College" name="college" />
         <Input label="Address" name="address" />
-        <Input as="select" label="Identity" name="identity">
+        <Input as="select" label="Identity *" name="identity">
           <option value="AMERICAN">America</option>
           <option value="ASIAN">Asian</option>
         </Input>

@@ -1,6 +1,7 @@
-import { Input } from "./Input";
-import { useUser } from "../context/user";
-import * as Button from "./Button";
+import { Input } from "../Input";
+import { useUser } from "../../context/user";
+import * as Button from "../Button";
+import "./styles.css";
 
 export const Login = ({ history }) => {
   const { login } = useUser();
@@ -12,6 +13,7 @@ export const Login = ({ history }) => {
       name: name.value,
       password: password.value,
     });
+    ev.target.reset();
   };
 
   return (
@@ -21,7 +23,7 @@ export const Login = ({ history }) => {
         <span>Login</span>
         <div className="empty"></div>
       </h1>
-      <form onSubmit={handleLogin}>
+      <form className="login-form" onSubmit={handleLogin}>
         <Input label="Name" name="name" required />
         <Input label="Password" name="password" type="password" required />
         <Button.Primary type="submit">Login</Button.Primary>
