@@ -1,12 +1,12 @@
-import { Input } from "../Input";
-import { useUser } from "../../context/user";
-import * as Button from "../Button";
-import "./styles.css";
+import { Input } from "../components/Input";
+import { useUser } from "../context/user";
+import * as Button from "../components/Button";
+import "../styles/login.css";
 
 export const Login = ({ history }) => {
   const { login } = useUser();
 
-  const handleLogin = async ev => {
+  const handleLogin = async (ev) => {
     ev.preventDefault();
     const { name, password } = ev.target.elements;
     login({

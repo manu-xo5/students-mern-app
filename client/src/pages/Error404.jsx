@@ -1,4 +1,5 @@
-import { Back } from "./Button";
+import { Back } from "../components/Button";
+
 export const Error404 = () => {
   return (
     <div className="error-404">

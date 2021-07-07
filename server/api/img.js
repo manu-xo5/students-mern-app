@@ -9,6 +9,7 @@ router.get("/:studentId", async (req, res) => {
   try {
     const { studentId } = req.params;
     const img = await Img.findOne({ studentId });
+    // Todo send placeholder img
     if (!img) return res.sendStatus(404);
     res.setHeader("content-type", "image/apng");
     res.send(new Buffer.from(img.displayPic.buffer));

@@ -2,7 +2,7 @@ import { query, api_prefix } from "../helpers/query";
 import { mult } from "../helpers/utils";
 
 export const Api = {
-  me: token =>
+  me: (token) =>
     query("/me", {
       method: "get",
       headers: {
@@ -10,7 +10,7 @@ export const Api = {
       },
     }),
   getStudents: () => query("/students"),
-  getDisplayPic: studentId => `${api_prefix}img/${studentId}`,
+  getDisplayPic: (studentId) => `${api_prefix}/img/${studentId}`,
   login: ({ name, password }) =>
     query("/auth", {
       method: "post",
@@ -47,7 +47,7 @@ export const Api = {
         note,
       }),
     }),
-  deleteProfile: token =>
+  deleteProfile: (token) =>
     query(`/students`, {
       method: "delete",
       headers: {

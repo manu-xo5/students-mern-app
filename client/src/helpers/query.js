@@ -1,13 +1,13 @@
 import { AppError } from "../class/AppError";
 
-export const api_prefix = "/api/";
+export const api_prefix = "/api";
 
 /**
  *
  * @param {Response} res
  */
 
-export const validate = res => {
+export const validate = (res) => {
   const { headers, status } = res;
   if (!headers.get("content-type").includes("application/json")) {
     throw new AppError("Server Error.");

@@ -1,7 +1,7 @@
-import { StudentsList } from "./StudentsList";
-import { Menu } from "./Button";
+import { StudentsList } from "../components/StudentsList";
+import { Menu } from "../components/Button";
 import { useReducer } from "react";
-import { Navbar } from "./Nav";
+import { Navbar } from "../components/Nav";
 
 export const Home = () => {
   const [isMenuOpen, toggleMenu] = useReducer((p, a) => a ?? !p, false);

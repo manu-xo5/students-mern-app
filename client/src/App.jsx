@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Error404 } from "./components/Error404";
-import { Home } from "./components/Home";
-import { Login } from "./components/Login";
+import { Error404 } from "./pages/Error404";
+import { Home } from "./pages/index";
+import { Login } from "./pages/Login";
 import { Navbar } from "./components/Nav";
-import { Profile } from "./components/Profile";
+import { Profile } from "./pages/Profile";
 import { Proute } from "./components/Proute";
-import { Signup } from "./components/Signup";
+import { Signup } from "./pages/Signup";
 import { Student } from "./components/Student";
 import { TokenProvider } from "./context/token";
 import { UserProvider } from "./context/user";

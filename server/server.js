@@ -15,13 +15,15 @@ const PORT = process.env.PORT || 5000;
 const MONGORUI = process.env.MONGO_URI;
 
 app.use(Express.json());
-app.use("/static", Express.static(__dirname + "/static"));
+app.use("/static", Express.static(__dirname + "/build/static"));
 
 app.use("/api/auth", AuthRoutes);
 app.use("/api/me", MeRoutes);
 app.use("/api/students", StudentsRoutes);
 app.use("/api/img", ImgRoutes);
-app.use("/", (_, res) => res.sendFile(path.join(__dirname, "index.html")));
+app.use("/", (_, res) =>
+  res.sendFile(path.join(__dirname, "/build/index.html"))
+);
 app.use("*", (_, res) => res.redirect("/"));
 
 async function main() {

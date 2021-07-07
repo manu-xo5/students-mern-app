@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useUser } from "../context/user";
-import { Input } from "./Input";
-import * as Button from "./Button";
+import { Input } from "../components/Input";
+import * as Button from "../components/Button";
 import { formateDate } from "../helpers/formateDate";
 import { Api } from "../helpers/api";
 
@@ -11,7 +11,7 @@ export const Profile = () => {
   const { user, updateNote, updateDisplayPic, deleteAccount } = useUser();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleProfileUpdate = async ev => {
+  const handleProfileUpdate = async (ev) => {
     ev.preventDefault();
     const newNote = ev.target.elements.note.value;
     const displayPic = ev.target.elements.displayPic.files.item(0);
@@ -61,7 +61,8 @@ export const Profile = () => {
         <Button.Primary
           className="submit-btn"
           type="submit"
-          disabled={isLoading}>
+          disabled={isLoading}
+        >
           Update note
         </Button.Primary>
         <Button.Secondary onClick={deleteAccount}>

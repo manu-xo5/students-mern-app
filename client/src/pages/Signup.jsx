@@ -1,24 +1,16 @@
 import { useState } from "react";
 import { useUser } from "../context/user";
-import { Input } from "./Input";
-import * as Button from "./Button";
+import { Input } from "../components/Input";
+import * as Button from "../components/Button";
 
 export const Signup = ({ history }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { signup } = useUser();
 
-  const handleRegister = async ev => {
+  const handleRegister = async (ev) => {
     ev.preventDefault();
-    const {
-      name,
-      password,
-      phone,
-      dob,
-      college,
-      address,
-      identity,
-      note,
-    } = ev.target.elements;
+    const { name, password, phone, dob, college, address, identity, note } =
+      ev.target.elements;
     setIsLoading(false);
     await signup({
       name: name.value,
